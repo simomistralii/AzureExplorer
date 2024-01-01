@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from "react";
+import './App.css';
+import Layout from "./components/Layout";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/HomePage';
+import About from './pages/AboutPage';
+import PowerBIReportEmbed from "./pages/PowerBIReport";
+
+class App extends Component {
+    render() {
+        return (
+            <div className="App select-none">
+                <BrowserRouter basename=''>
+                    <Routes>
+                        <Route element={<Layout />} >
+                            <Route path="/" element={<Home />} />
+                            <Route path="/About" element={<About />} />
+                            <Route path="/PowerBI/:reportID" element={<PowerBIReportEmbed />} />
+                        </Route>
+                    </Routes>
+                   {/*  <Layout /> */}
+                </BrowserRouter>
+            </div>
+        );
+    }
 }
 
 export default App;
